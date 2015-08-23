@@ -5,11 +5,11 @@ class ShortKeyGenerator
 
   def perform
     result = ''
-    max_amount_keys = 1
+    max_amount_keys = charset_length ** (min_length - 1)
 
     min_length.times do
       result += generate_next_character(result, max_amount_keys)
-       max_amount_keys *= charset_length
+      max_amount_keys /= charset_length
     end
 
     result
