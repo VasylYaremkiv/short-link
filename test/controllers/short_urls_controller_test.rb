@@ -8,10 +8,10 @@ class ShortUrlsControllerTest < ActionController::TestCase
 
   def test_show_redirect_user_to_origin_url
     short_url = FactoryGirl.create(:short_url, origin_url: @origin_url)
-    
+
     assert_difference -> { short_url.reload.count_click }, +1 do
       get :show, id: short_url.url_key
-    end      
+    end
     assert_redirected_to @origin_url
   end
 
@@ -23,7 +23,7 @@ class ShortUrlsControllerTest < ActionController::TestCase
 
   def test_create_returns_new_short_url_if_origin_url_valid
     post :create, short_url: { origin_url: @origin_url }
-          
+
     assert_response :success
     result = JSON.parse response.body
     assert result['success']
@@ -33,7 +33,7 @@ class ShortUrlsControllerTest < ActionController::TestCase
   def test_create_returns_existing_short_url_if_origin_url_is_present_in_database
     short_url = FactoryGirl.create(:short_url, origin_url: @origin_url)
     post :create, short_url: { origin_url: @origin_url }
-          
+
     assert_response :success
     result = JSON.parse response.body
     assert result['success']
@@ -42,7 +42,7 @@ class ShortUrlsControllerTest < ActionController::TestCase
 
   def test_create_returns_error_if_origin_url_is_not_present
     post :create, short_url: { origin_url: '' }
-          
+
     assert_response :success
     result = JSON.parse response.body
     refute result['success']
@@ -55,6 +55,6 @@ class ShortUrlsControllerTest < ActionController::TestCase
     assert_difference -> { ShortUrl.count }, -1 do
       delete :destroy, id: short_url.url_key
     end
-  end  
+  end
 
 end

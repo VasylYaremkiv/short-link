@@ -1,6 +1,3 @@
-console.log 'test'
-
-
 $ ->
   $('#create_new_short_url').on 'click', ->
     $error = $('.error')
@@ -14,7 +11,6 @@ $ ->
       dataType: 'json'
       method: 'post'
       success: (data) ->
-        console.log data
         if data.success
           $new_short_url.find('strong').html(data.short_url)
           $new_short_url.show()
