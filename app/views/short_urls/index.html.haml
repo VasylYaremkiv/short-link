@@ -1,0 +1,42 @@
+
+.btn.btn-default.m-10{ data: { toggle: 'modal', target: '#add_new_short_url' } } Add new
+
+
+%table.table.table-condensed
+  %thead
+    %tr
+      %td Origin url
+      %td Short url
+      %td Count clicks
+      %td Action
+
+
+  %tbody
+    - @short_urls.each do |short_url|
+      %tr
+        %td= short_url.origin_url
+        %td= link_to short_url_url(short_url), short_url_url(short_url), target: '_blank'
+        %td= short_url.count_click
+        %td= button_to 'Delete', short_url_url(short_url), method: "delete"
+
+
+
+#add_new_short_url.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { label: 'Close' } }
+          %span{ aria: { hidden: 'true'} } &times;
+        %h4.modal-title Create new short url
+      .modal-body
+        .error
+        = label_tag 'original_short_url', 'Original url'
+        = text_field_tag 'original_short_url'
+        .new-short-url
+          Your short url: 
+          %strong 
+
+      .modal-footer
+        %button.btn.btn-default{ type: 'button', data: { dismiss: 'modal' } } Cancel
+        %button.btn.btn-primary#create_new_short_url{ type: 'button' } Create
+
