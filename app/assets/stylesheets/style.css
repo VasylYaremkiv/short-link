@@ -4,3 +4,6 @@
 #original_short_url {
   width: 100%;
 }
+.new-short-url {
+  display: none;
+}

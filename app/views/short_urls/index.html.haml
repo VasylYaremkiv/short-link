@@ -1,6 +1,4 @@
-
 .btn.btn-default.m-10{ data: { toggle: 'modal', target: '#add_new_short_url' } } Add new
-
 
 %table.table.table-condensed
   %thead
@@ -18,7 +16,6 @@
         %td= link_to short_url_url(short_url), short_url_url(short_url), target: '_blank'
         %td= short_url.count_click
         %td= button_to 'Delete', short_url_url(short_url), method: "delete"
-
 
 
 #add_new_short_url.modal.fade
@@ -39,4 +36,3 @@
       .modal-footer
         %button.btn.btn-default{ type: 'button', data: { dismiss: 'modal' } } Cancel
         %button.btn.btn-primary#create_new_short_url{ type: 'button' } Create
-
